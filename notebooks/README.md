@@ -15,10 +15,6 @@ Usage (from the repo root):
 ```bash
 python notebooks/run_eval_demo.py
 
-
-4. Commit with message:  
-   `Document run_eval_demo script`
-
 ---
 
 At this point, your repo has:

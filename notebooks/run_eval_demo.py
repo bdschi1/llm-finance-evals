@@ -17,12 +17,16 @@ model integration.
 """
 
 import json
+import sys
 from pathlib import Path
+
+# Ensure the repository root is on sys.path so `import scoring...` works
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from scoring.equity_research_rubric import score_equity_thesis
 from scoring.risk_logic_rubric import score_risk_summary
-
-
 def load_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 

@@ -1,0 +1,79 @@
+id: biotech_event_v1
+name: Biotech clinical / regulatory event reasoning
+description: >
+  Evaluate whether an LLM can structure base/bull/bear scenarios and positioning
+  around a key biotech event (e.g., Phase 3 readout, FDA decision), given a brief
+  trial summary, prior data, and company context.
+
+task_type: generation
+
+inputs:
+  - id: trial_summary
+    description: >
+      3–6 sentence description of the trial: indication, phase, patient population,
+      primary endpoint(s), and timing of readout or decision.
+  - id: prior_data
+    description: >
+      Bulleted list of key prior data points or precedent studies (if any),
+      including any red flags (safety, efficacy, trial design).
+  - id: company_context
+    description: >
+      2–4 sentences describing company size, pipeline mix, balance sheet, and how
+      important this event is to the overall equity story.
+
+outputs:
+  - id: scenario_tree
+    description: >
+      Short base/bull/bear scenario tree for the event, with associated directional
+      impact on the stock and rough probability statements.
+  - id: positioning_view
+    description: >
+      2–4 paragraphs describing how a fundamental PM might size, hedge, or avoid
+      the event, given the scenario tree and portfolio context.
+
+rubric:
+  dimensions:
+    - id: event_understanding
+      label: Event and endpoint understanding
+      weight: 0.25
+      description: >
+        Does the model correctly interpret the trial design, endpoints, and the
+        importance of the event for the stock?
+      scale: 1-5
+
+    - id: scenario_quality
+      label: Scenario structure and calibration
+      weight: 0.30
+      description: >
+        Are base/bull/bear scenarios well-defined, internally consistent, and
+        plausibly calibrated (not all 33/33/33 or obviously biased)?
+      scale: 1-5
+
+    - id: positioning_logic
+      label: Positioning and risk logic
+      weight: 0.25
+      description: >
+        Does the positioning view tie scenario probabilities to position sizing,
+        hedging, and correlation with the rest of the book?
+      scale: 1-5
+
+    - id: risk_awareness
+      label: Risk awareness and tail thinking
+      weight: 0.20
+      description: >
+        Does the answer identify key tail risks (e.g., safety issues, trial design flaws,
+        financing risk) and how they would be managed?
+      scale: 1-5
+
+scoring:
+  method: rubric
+  script: scoring/biotech_event_rubric.py  # to be implemented later
+
+cases:
+  - id: bio_case_1
+    data_file: ../data/biotech/bio_case_1_input.json
+    golden_answer_file: ../golden_answers/bio_case_1_answer.md
+
+  - id: bio_case_2
+    data_file: ../data/biotech/bio_case_2_input.json
+    golden_answer_file: ../golden_answers/bio_case_2_answer.md

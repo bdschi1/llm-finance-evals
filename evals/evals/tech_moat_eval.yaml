@@ -1,0 +1,71 @@
+id: tech_moat_v1
+name: Technology competitive moat and disruption analysis
+description: >
+  Evaluate whether an LLM can produce a credible analysis of a technology company’s
+  competitive moat, disruption risks, and monetization paths, given a product and
+  ecosystem summary.
+
+task_type: generation
+
+inputs:
+  - id: product_overview
+    description: >
+      3–6 sentences describing the company’s core products, platform, and business model.
+  - id: ecosystem_context
+    description: >
+      Bulleted list of major competitors, partners, and relevant platform dependencies.
+  - id: current_developments
+    description: >
+      3–5 bullets on recent product launches, strategy shifts, or regulatory headlines.
+
+outputs:
+  - id: moat_analysis
+    description: >
+      3–6 paragraphs assessing the company’s moat (technology, data, distribution,
+      switching costs) and how durable it is over the next 3–5 years.
+  - id: disruption_and_monetization
+    description: >
+      2–4 paragraphs discussing key disruption risks and credible monetization paths,
+      including how the company might pivot if the current model comes under pressure.
+
+rubric:
+  dimensions:
+    - id: moat_clarity
+      label: Clarity of moat and sources of edge
+      weight: 0.30
+      description: >
+        Does the answer clearly articulate why this company wins or loses (product,
+        data, distribution, ecosystem position) vs named competitors?
+      scale: 1-5
+
+    - id: time_horizon_and_durability
+      label: Time horizon and moat durability
+      weight: 0.20
+      description: >
+        Does the analysis explicitly consider 3–5 year durability vs short-term noise?
+      scale: 1-5
+
+    - id: disruption_logic
+      label: Disruption and platform risk logic
+      weight: 0.25
+      description: >
+        Are disruption risks and platform dependencies identified and discussed
+        with realistic mechanisms, not generic “tech risk” boilerplate?
+      scale: 1-5
+
+    - id: monetization_insight
+      label: Monetization and strategic options
+      weight: 0.25
+      description: >
+        Does the model identify plausible monetization paths and strategic pivots,
+        and connect them to P&L and valuation?
+      scale: 1-5
+
+scoring:
+  method: rubric
+  script: scoring/tech_moat_rubric.py  # to be implemented later
+
+cases:
+  - id: tech_case_1
+    data_file: ../data/tech/tech_case_1_input.json
+    golden_answer_file: ../golden_answers/tech_case_1_answer.md

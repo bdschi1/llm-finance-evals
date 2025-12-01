@@ -82,3 +82,13 @@ llm-finance-evals/
   notebooks/        # End-to-end runnable examples / scripts
   data/             # Synthetic / public test inputs (no MNPI)
   docs/             # Additional documentation and diagrams
+
+___
+
+
+## Open-Source PR Work
+
+- **Financial-Reasoning Agent Evaluation Template**  
+  Draft evaluation rubric and task set intended for contribution to an
+  `awesome-ai-agents`-style repository. Focused on PM/analyst workflows
+  similar to the Mercor Portfolio Manager and Analyst roles.

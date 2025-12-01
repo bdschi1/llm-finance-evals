@@ -33,6 +33,12 @@ The project is organized around four core components:
 - **Scoring tools (`/scoring`)**  
   Simple scripts and rubrics that turn model outputs into transparent scores and rationales.
 
+- **Planned expansions (`/future`)**  
+  Planned expansions include more explicit portfolio-risk and attribution evals based on
+factor vs idiosyncratic risk decomposition, so that models are tested on the same logic
+used in real portfolio construction and risk reviews.
+
+
 Supporting these, there are:
 
 - **Notebooks / scripts (`/notebooks`)**  

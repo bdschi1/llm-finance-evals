@@ -52,7 +52,7 @@ This repo is aimed at:
 
 - **AI / ML / platform teams** at funds, banks, and fintechs who need concrete, finance-specific evals rather than generic benchmarks.  
 - **Domain-expert AI trainer / evaluator roles** who design tasks, datasets, and rubrics for LLM-based research tooling.  
-- **PMs, research heads, and risk** who want to understand how LLM performance is being measured before relying on it in live workflows.
+- **PMs, research heads, and risk managers ** who want to understand how LLM performance is being measured before relying on it in live workflows.
 
 ---
 
@@ -73,7 +73,6 @@ The goal is to make it easy for AI/ML teams to plug in models, while PMs, resear
 
 ## Folder structure
 
-```text
 llm-finance-evals/
   evals/            # Evaluation definitions and config files
   golden_answers/   # Canonical “golden” responses
@@ -90,5 +89,4 @@ ___
 
 - **Financial-Reasoning Agent Evaluation Template**  
   Draft evaluation rubric and task set intended for contribution to an
-  `awesome-ai-agents`-style repository. Focused on PM/analyst workflows
-  similar to the Mercor Portfolio Manager and Analyst roles.
+  `awesome-ai-agents`-style repository. Focused on PM/analyst workflows.

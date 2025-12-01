@@ -24,115 +24,115 @@ professional portfolio managers and analysts.
 
 ## 2. Core Evaluation Dimensions
 
-Each response should be scored from 1–5 on the following dimensions:
+Score each dimension on a 1–5 scale:
 
 1. **Factual Accuracy**
-   - 1: Multiple material factual errors.
-   - 3: Mostly accurate; minor issues that do not change the conclusion.
-   - 5: No material factual errors; citations or clear grounding in the source.
+   - 1: Multiple material factual errors.  
+   - 3: Mostly accurate; minor issues that don’t change the conclusion.  
+   - 5: No material factual errors; grounded in the source.
 
 2. **Understanding of Business Model & Drivers**
-   - 1: Superficial description; misses key revenue/cost drivers.
-   - 3: Correct core drivers but misses second-order dynamics.
-   - 5: Clear, coherent description of how the company makes and loses money.
+   - 1: Superficial; misses key revenue/cost drivers.  
+   - 3: Understands main drivers; misses some nuance.  
+   - 5: Clear and coherent understanding of how the company creates value.
 
-3. **Risk Awareness (Company-Specific and Structural)**
-   - 1: Ignores or trivializes key risks that a human PM would flag immediately.
-   - 3: Identifies several important risks but misses some obvious ones.
-   - 5: Surfaces major idiosyncratic, sector, and macro/structural risks, and
-        links them to the thesis and position sizing.
+3. **Risk Awareness (Idiosyncratic, Sector, Macro)**
+   - 1: Ignores key risks a PM would immediately flag.  
+   - 3: Identifies several important risks but misses some obvious ones.  
+   - 5: Surfaces major idiosyncratic, sector, and macro risks; links them to thesis and sizing.
 
-4. **Reasoning Quality and Internal Consistency**
-   - 1: Contradictions, unstructured narrative, or unexplained jumps in logic.
-   - 3: Mostly coherent but with some gaps or hand-waving.
-   - 5: Step-by-step reasoning, explicit assumptions, and clear “because → therefore” logic.
+4. **Reasoning Quality & Internal Consistency**
+   - 1: Contradictions, unclear logic, leaps of reasoning.  
+   - 3: Mostly coherent; some gaps.  
+   - 5: Step-by-step, explicit assumptions, clean causal logic.
 
-5. **Actionability for a PM/Analyst**
-   - 1: Vague commentary; cannot inform a position or risk decision.
-   - 3: Directionally helpful but would require significant human rework.
-   - 5: Directly usable as a starting point for a research note, risk memo, or PM discussion.
+5. **Actionability for PM/Analyst Workflows**
+   - 1: Too vague to use in real decision-making.  
+   - 3: Directionally helpful but incomplete.  
+   - 5: Directly usable as a starting point for research or risk discussions.
 
-6. **Hallucination Control / Use of Sources**
-   - 1: Fabricates figures, events, or citations.
-   - 3: Mostly grounded but with some unsupported claims.
-   - 5: Clearly distinguishes between known facts, estimates, and assumptions.
+6. **Hallucination Control / Source Grounding**
+   - 1: Fabricates metrics, events, or facts.  
+   - 3: Mostly grounded; occasional unsupported statements.  
+   - 5: Clear separation of facts, estimates, and assumptions.
 
 ---
 
 ## 3. Example Task Specifications
 
-Below are three standardized tasks. Replace the ticker/portfolio with your own.
-
-### Task A – Earnings Quality and Thesis Skeleton
-
-**Prompt (to the agent)**  
-> You are an equity analyst. Read the attached Q3 earnings materials and relevant  
-> buyside/sellside research for TICKER.  
-> 1) Summarize the quarter in 10 bullet points.  
-> 2) Identify the 5 most important drivers of forward EPS and FCF.  
-> 3) Propose a preliminary long/short view and list 5 key risks that could break the thesis.  
-> 4) Explicitly state what data you would need next to refine the view.
-
-**Evaluator notes:**  
-- Focus on whether the agent captures the *essence* of the quarter, not prose quality.  
-- High scores require risk-aware, non-naïve commentary (no “everything is fine” summaries).
+Below are three standardized tasks suitable for PM/analyst evaluation.  
+Replace tickers/portfolios with your own.
 
 ---
 
-### Task B – Portfolio Risk & Exposure Sanity Check
+### Task A — Earnings Quality & Thesis Skeleton
 
-**Prompt (to the agent)**  
-> You are a portfolio manager. Given the attached portfolio snapshot (names, weights,  
-> sectors, regions, and factor betas), perform a risk sanity check:  
+**Prompt to agent:**  
+> You are an equity analyst. Read the attached quarterly earnings materials  
+> and buyside/sellside research for TICKER.  
+> 1) Summarize the quarter in 10 bullet points.  
+> 2) Identify 5 key drivers of forward EPS/FCF.  
+> 3) Propose a preliminary long/short view and list 5 thesis-breaking risks.  
+> 4) State explicitly what additional data you need.
+
+**Evaluator notes:**  
+- Focus on whether the agent captures essence, not prose quality.  
+- High score = risk-aware, non-naive, PM-grade takeaways.
+
+---
+
+### Task B — Portfolio Risk & Exposure Sanity Check
+
+**Prompt to agent:**  
+> You are a PM. Using the attached portfolio snapshot (weights, sectors, factor betas):  
 > 1) Identify the top 3 concentration risks.  
 > 2) Describe the portfolio’s main factor exposures.  
-> 3) Suggest 3 concrete ways to reduce unintended risk without destroying the core thesis.
+> 3) Suggest 3 adjustments to reduce unintended risk without breaking the thesis.
 
 **Evaluator notes:**  
-- High scores if the agent can explain risk in language that a PM or CIO would find credible.  
-- Penalize vague or generic risk advice that ignores the specific portfolio.
+- Penalize generic “risk is high” statements.  
+- High score = portfolio-specific, PM-relevant reasoning.
 
 ---
 
-### Task C – Risk Disclosure and Landmine Detection
+### Task C — Risk Disclosure & Landmine Detection
 
-**Prompt (to the agent)**  
-> Read the Risk Factors section of the attached 10-K for TICKER and any relevant  
-> buyside/sellside research.  
-> 1) List 10 risks that are most relevant to a long-only investor.  
-> 2) List 10 risks that are especially relevant to a short seller.  
-> 3) Highlight 3 “sleep-at-night” issues for a PM (things that could cause a major drawdown).
+**Prompt to agent:**  
+> Read the Risk Factors section of the attached 10-K and the relevant  
+> buyside/sellside research for TICKER.  
+> 1) List 10 risks relevant to a long investor.  
+> 2) List 10 risks relevant to a short seller.  
+> 3) Highlight 3 “sleep-at-night” issues (major drawdown risks).
 
 **Evaluator notes:**  
-- High scores require differentiation between generic/legal boilerplate and real, material risks.
+- High score requires distinguishing boilerplate vs real, material risks.
 
 ---
 
-## 4. Scoring and Aggregation
+## 4. Scoring & Aggregation
 
 For each task:
 
-- Score each dimension from 1–5.
-- Compute:
-  - **Overall Score** = average of all dimensions.
-  - **Decision-Usefulness Score** = average of (Understanding, Risk Awareness, Actionability).
+- Score all dimensions from 1–5.  
+- Compute:  
+  - **Overall Score** = average of all dimensions.  
+  - **Decision-Usefulness Score** = average of Understanding + Risk Awareness + Actionability.
 
-Keep a simple log (CSV/JSON) with:
-- Model/agent name and version
-- Task ID (A, B, C…)
-- Scores per dimension
-- Notes on failure modes
+Maintain logs (CSV/JSON) containing:
+
+- Model/agent name and version  
+- Task ID  
+- Scores per dimension  
+- Notes on failure modes and dangerous behavior
 
 ---
 
 ## 5. Usage
 
-You can use this template to:
+Use this template to:
 
-- Compare multiple agents or model versions on the same financial tasks.
-- Track progress over time as prompts, tools, or models change.
-- Communicate evaluation results to portfolio managers, analysts, data scientists,
-  and leadership in a structured way.
+- Compare multiple agents and model versions.  
+- Track performance changes as prompts or tools evolve.  
+- Document evaluation standards for PMs, analysts, ML teams, and leadership.
 
-Feel free to adapt the specific tasks or scoring scale, but keep the focus on
-decision-usefulness and risk-awareness in professional investment workflows.
+The emphasis is *professional investment workflows*, not generic QA.

@@ -33,6 +33,30 @@ The project is organized around four core components:
 - **Scoring tools (`/scoring`)**  
   Simple scripts and rubrics that turn model outputs into transparent scores and rationales.
 
+- **Scoring frameworks**
+
+Scoring is intentionally layered so you can start simple and add structure:
+
+- **Discrete rubric (baseline)**  
+  Per-task, 1–5 scores on dimensions like factual grounding, driver
+  understanding, risk awareness, conviction levers/event path, and
+  positioning & risk use.
+
+- **Continuous / dynamic scoring (optional)**  
+  Continuous scores in [0, 1] that update as new information is provided
+  and the model revises its answer. Designed to capture conviction
+  trajectories over an event path instead of one-shot answers.
+
+- **Bayesian scoring (optional)**  
+  Treats conviction as a probabilistic belief that a thesis is
+  economically “right” and that sizing is appropriate. Uses Beta/Bernoulli
+  updates to move from prior to posterior beliefs as events unfold, then
+  maps posterior conviction to position size in risk units.
+
+- **Conviction Slugging (experimental)**  
+  Measures payoff power per unit of risk when the model “swings” its risk
+  budget: the ratio of average P&L per risk unit on winning swings to
+
 - **Planned expansions (`/future`)**  
   Planned expansions include more explicit portfolio-risk and attribution evals based on
 factor vs idiosyncratic risk decomposition, so that models are tested on the same logic

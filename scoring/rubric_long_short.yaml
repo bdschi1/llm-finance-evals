@@ -1,0 +1,30 @@
+# Scoring rubric for LLM PM-vs-PM evaluations
+
+rubric:
+  business_understanding:
+    1: "Major misunderstandings; generic commentary; missing key drivers."
+    3: "Reasonable understanding; some imprecision; partially grounded."
+    5: "Strong, PM-grade depth; clear articulation of drivers and reasoning."
+
+  event_path_clarity:
+    1: "No event path or incorrect path."
+    3: "Basic path but missing key nodes or sizing updates."
+    5: "Clear multi-node event path with correct conviction/sizing updates."
+
+  conviction_levers:
+    1: "Does not mention levers or invents irrelevant ones."
+    3: "Covers some levers; inconsistent or incomplete."
+    5: "Identifies major levers; shows how positive/negative updates affect conviction and sizing."
+
+  risk_budget_usage:
+    1: "No risk-unit thinking; ignores portfolio context."
+    3: "Mentions risk but not fully integrated."
+    5: "Explicit, PM-style risk-unit allocation and adjustments."
+
+  thesis_quality:
+    1: "Generic or superficial thesis."
+    3: "Reasonable thesis with gaps."
+    5: "Clear, defensible long/short thesis tied to scenario reasoning."
+
+method:
+  type: "manual_or_LLM"

@@ -101,6 +101,18 @@ The goal is to make it easy for AI/ML teams to plug in models, while PMs, resear
 
 ---
 
+## How to Run an Evaluation
+
+This repository includes a complete end-to-end evaluation pipeline for assessing
+LLM reasoning quality in long/short equity portfolio management tasks.
+
+Follow the steps below to run an evaluation:
+
+### 1. Select a scenario
+Choose one of the scenarios in:
+
+--
+
 ## Folder structure
 
 llm-finance-evals/

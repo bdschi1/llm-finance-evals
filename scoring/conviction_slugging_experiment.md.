@@ -1,0 +1,111 @@
+## 7. Worked Synthetic Example
+
+This simple example shows how to compute Conviction Slugging and
+Swing-Weighted Conviction Slugging for a single idea over four events.
+
+Assumptions:
+
+- Direction of thesis: **long**.
+- Minimum swing threshold: \( S_{\min} = 0.5 \) risk units.
+- Risk budget: measured in risk units (conceptual, not % NAV).
+- \( \Pi_t \) is defined as **P&L per unit of risk** over the period after event \( t \).
+
+### 7.1 Event Path and Swings
+
+| Event t | R_(t-1) | R_t  | Swing S_t = |R_t − R_(t-1)| | P&L per risk Π_t | Winner / Loser? | Notes                                  |
+|--------|---------|------|--------------------------------|-------------------|------------------|----------------------------------------|
+| 1      | 1.0     | 2.0  | 1.0                            | +0.08             | Winner           | Increased long into positive payoff    |
+| 2      | 2.0     | 3.5  | 1.5                            | +0.04             | Winner           | Added more risk, still positive payoff |
+| 3      | 3.5     | 2.0  | 1.5                            | −0.06             | Loser            | Cut risk, then stock went up          |
+| 4      | 2.0     | 1.0  | 1.0                            | −0.02             | Loser            | Cut more, then stock went up further  |
+
+- We treat events 1 and 2 as **winning swings** (they increased exposure
+  in a direction that produced positive P&L per risk).
+- Events 3 and 4 are **losing swings** (they reduced exposure before
+  positive P&L for a long thesis).
+
+Set:
+
+- Winner set \( W = \{1, 2\} \)
+- Loser set  \( L = \{3, 4\} \)
+
+### 7.2 Conviction Slugging
+
+Average P&L per risk on winning swings:
+
+\[
+\overline{\Pi}_{W} =
+\frac{\Pi_1 + \Pi_2}{2} =
+\frac{0.08 + 0.04}{2} = 0.06
+\]
+
+Average absolute P&L per risk on losing swings:
+
+\[
+\overline{|\Pi|}_{L} =
+\frac{|\Pi_3| + |\Pi_4|}{2} =
+\frac{0.06 + 0.02}{2} = 0.04
+\]
+
+Conviction Slugging:
+
+\[
+\text{ConvictionSlugging} =
+\frac{\overline{\Pi}_{W}}
+     {\overline{|\Pi|}_{L}} =
+\frac{0.06}{0.04} = 1.5
+\]
+
+Interpretation: on average, **winning swings generate 1.5× the P&L per unit
+of risk that losing swings destroy**.
+
+### 7.3 Swing-Weighted Conviction Slugging
+
+Now weight by swing size \( S_t \).
+
+Compute swing-weighted P&L for winners:
+
+- Event 1: \( S_1 \cdot \Pi_1 = 1.0 \cdot 0.08 = 0.08 \)
+- Event 2: \( S_2 \cdot \Pi_2 = 1.5 \cdot 0.04 = 0.06 \)
+- Sum over winners: \( 0.08 + 0.06 = 0.14 \)
+- Total swing size for winners: \( S_1 + S_2 = 1.0 + 1.5 = 2.5 \)
+
+Swing-weighted average for winners:
+
+\[
+\overline{\Pi}^{(w)}_{W} =
+\frac{0.14}{2.5} = 0.056
+\]
+
+For losers:
+
+- Event 3: \( S_3 \cdot |\Pi_3| = 1.5 \cdot 0.06 = 0.09 \)
+- Event 4: \( S_4 \cdot |\Pi_4| = 1.0 \cdot 0.02 = 0.02 \)
+- Sum over losers: \( 0.09 + 0.02 = 0.11 \)
+- Total swing size for losers: \( S_3 + S_4 = 1.5 + 1.0 = 2.5 \)
+
+Swing-weighted average for losers:
+
+\[
+\overline{|\Pi|}^{(w)}_{L} =
+\frac{0.11}{2.5} = 0.044
+\]
+
+Swing-Weighted Conviction Slugging:
+
+\[
+\text{ConvictionSlugging}^{(w)} =
+\frac{\overline{\Pi}^{(w)}_{W}}
+     {\overline{|\Pi|}^{(w)}_{L}} =
+\frac{0.056}{0.044} \approx 1.27
+\]
+
+Interpretation:
+
+- Unweighted slugging = **1.5** (good payoff power per risk on average).
+- Swing-weighted slugging ≈ **1.27**, slightly lower, reflecting that some
+  of the bigger swings (especially event 3) were poorly timed.
+
+In a real experiment you would compare these metrics across models or
+policies. The goal is to identify agents that **use risk well when they
+choose to swing**, not just agents that write good theses.

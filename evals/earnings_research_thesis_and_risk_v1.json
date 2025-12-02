@@ -1,0 +1,29 @@
+{
+  "id": "earnings_research_thesis_and_risk_v1",
+  "task_type": "equity_earnings_research",
+  "description": "Evaluate whether a model can read company filings and buyside/sellside research to produce a PM-grade long/short thesis, risk section, and basic sizing logic.",
+  "inputs": {
+    "company_profile_and_docs": "data/earnings_research_thesis_and_risk_v1_example.md"
+  },
+  "expected_outputs": {
+    "sections": [
+      "Business and thesis summary",
+      "Key drivers and KPIs",
+      "Risks (idiosyncratic, sector, macro)",
+      "Event path and conviction levers",
+      "Sizing and role in a long/short portfolio"
+    ]
+  },
+  "scoring": {
+    "rubric_file": "scoring/earnings_research_thesis_and_risk_v1.md",
+    "dimensions": [
+      "factual_grounding",
+      "driver_understanding",
+      "risk_awareness",
+      "conviction_levers_and_event_path",
+      "positioning_and_risk_use",
+      "clarity_and_structure"
+    ],
+    "scale": "1_to_5_per_dimension"
+  }
+}

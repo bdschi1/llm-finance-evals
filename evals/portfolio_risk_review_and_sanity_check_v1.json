@@ -1,0 +1,30 @@
+{
+  "id": "portfolio_risk_review_and_sanity_check_v1",
+  "task_type": "portfolio_risk_review",
+  "description": "Evaluate whether a model can read a simple risk/attribution snapshot for a long/short book and produce a PM-grade risk review, highlighting intentional vs accidental risks, concentration, and concrete rebalance actions.",
+  "inputs": {
+    "portfolio_snapshot": "data/portfolio_risk_review_and_sanity_check_v1_example.md"
+  },
+  "expected_outputs": {
+    "sections": [
+      "High-level portfolio summary",
+      "Risk decomposition (factor, idiosyncratic, tail/convexity)",
+      "Intentional vs accidental risks",
+      "Concentration and crowding checks",
+      "Actionable changes (trims, adds, hedges, pairs)",
+      "Risk-budget and scenario commentary"
+    ]
+  },
+  "scoring": {
+    "rubric_file": "scoring/portfolio_risk_review_and_sanity_check_v1.md",
+    "dimensions": [
+      "risk_decomposition_understanding",
+      "intentional_vs_accidental_risk",
+      "concentration_and_crowding_insight",
+      "actionability_of_recommendations",
+      "alignment_with_risk_budget_mindset",
+      "clarity_and_structure"
+    ],
+    "scale": "1_to_5_per_dimension"
+  }
+}

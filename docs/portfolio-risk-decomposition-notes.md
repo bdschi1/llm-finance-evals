@@ -1,26 +1,34 @@
 # Portfolio Risk Decomposition Notes
 
-This document sketches the risk and attribution concepts that underpin how
-this repo evaluates LLMs on portfolio reasoning tasks.
+These notes sketch the risk and attribution concepts behind the evals in
+this repo.
 
-The high-level idea is to view a portfolio’s risk as coming from:
+Working assumptions:
 
-- **Systematic / factor risk** – exposure to broad drivers (market, sector, style factors).
-- **Idiosyncratic risk** – name-specific risks tied to fundamentals, events, or execution.
-- **Concentration and correlation structure** – how much risk is dominated by a few names,
-  sectors, or factors, and how correlated those positions are.
+- In a long/short equity book, **risk is the budgeting currency**.
+  Positions are sized in units of risk, not just dollars or notional.
+- Every position consumes a slice of a finite risk budget, decomposed into:
+  - **Systematic / factor risk** (market, sector, style),
+  - **Idiosyncratic risk** (stock-specific),
+  - **Convexity / tail risk** (options, gap risk, binary events).
+- The portfolio should be decomposed into additive risk slices
+  (factors, sectors, styles, single names, legs of pairs, tail scenarios),
+  where each slice has:
+  - An explicit role (alpha source, hedge, structural exposure),
+  - A capped contribution to total volatility and drawdown.
 
-For evaluation purposes, the questions are:
+For eval design, the key questions are:
 
-1. Can the model distinguish between **factor exposure** (e.g., “this portfolio is long quality
-   and short small-cap value”) and **stock-specific bets**?
-2. Does the model identify where risk is **concentrated** (e.g., single-name, sector, theme)?
-3. When given a simple attribution or risk report, does the model reason about:
-   - Whether the risk is **intentional or unintended**.
-   - How changes in position sizing would change the risk profile.
-4. Can the model propose **concrete adjustments** (e.g., trims, pairs, hedges) that reduce
-   unintended risk while preserving the core thesis?
+1. Can a model distinguish factor vs idiosyncratic risk and explain how a
+   position changes the risk profile of a book?
+2. Does it identify where risk is concentrated (single-name, sector, theme,
+   factor, event path)?
+3. When given a small risk/attribution report, can it reason about:
+   - Which risks are intentional vs accidental?
+   - How to resize or rebalance to improve **alpha per unit of marginal risk**?
+4. Can it propose concrete trades (trims, pairs, hedges) that align the
+   portfolio with a stated risk budget?
 
-Future work in this repo will add eval tasks and golden answers that reflect this
-decomposition, so that PMs and analysts can see whether LLMs reason about portfolios
-in a way that aligns with how risk is actually managed in practice.
+Future eval tasks will map these concepts into prompts, golden answers, and
+scoring rubrics so that model behavior can be judged the way a PM or risk
+manager would judge a book review.

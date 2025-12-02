@@ -1,0 +1,31 @@
+# Scoring schema for long/short PM evaluations
+
+components:
+  - name: business_understanding
+    description: |
+      How well the model demonstrates understanding of the business model,
+      unit economics, drivers, and relevant industry structure.
+
+  - name: event_path_clarity
+    description: |
+      Whether the model identifies the correct event path and updates thesis
+      and sizing along those nodes.
+
+  - name: conviction_levers
+    description: |
+      Whether the model correctly identifies the features that change
+      conviction and risk sizing.
+
+  - name: risk_budget_usage
+    description: |
+      Whether the model uses risk units and allocates/adjusts risk in a
+      portfolio-plausible, PM-grade way.
+
+  - name: thesis_quality
+    description: |
+      Whether the model presents a coherent long or short thesis that reflects
+      the scenario’s structure and fundamental reasoning.
+
+scale:
+  min: 1
+  max: 5

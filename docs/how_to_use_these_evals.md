@@ -7,8 +7,11 @@ It is designed for two main audiences:
 
 - **Engineers / platform / ML teams** who want structured, scriptable evals.
 - **PMs / analysts / domain-evaluator roles** who want to judge whether
-  models think and behave like a competent long/short PM, not just
-  “sound smart.”
+  models think and behave like a competent long/short PM.
+
+Takes position that GenAI in finance works best when **paired with domain experts who shape tasks, features, and evaluation**
+
+Evals testing GenAI as **copilots**: do models behave like a PM/risk partner?
 
 This document explains how to use the evals in both **manual** (by hand)
 and **programmatic** (via scripts/agents) workflows.

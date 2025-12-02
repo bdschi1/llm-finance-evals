@@ -106,5 +106,3 @@ Scenarios live in:
 
 ```text
 data/scenarios/
-
-Example: ai_infra_vs_productivity_rotation_event_path

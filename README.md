@@ -33,9 +33,9 @@ The project is organized around four core components:
 - **Scoring tools (`/scoring`)**  
   Simple scripts and rubrics that turn model outputs into transparent scores and rationales.
 
-- **Additional eval configs (e.g., evals/crowded_shared_favorites_eval_config.yaml)** cover other portfolio situations such as crowded shared favorites drawdowns.
+Additional eval configs (e.g., `evals/crowded_shared_favorites_eval_config.yaml`) cover other portfolio situations such as crowded shared favorites drawdowns.
 
-- ### Current scenarios
+### Current scenarios
 
 The initial version of this repo includes two fully specified long/short PM scenarios:
 
@@ -48,6 +48,8 @@ The initial version of this repo includes two fully specified long/short PM scen
   Path file: `data/scenarios/crowded_shared_favorites_drawdown_event_path.md`  
   Eval config: `evals/crowded_shared_favorites_eval_config.yaml`  
   Focus: crowding, de-risking, and how a PM manages a drawdown in widely held “quality favorites” — including position sizing, theme risk caps, and de-crowding behavior.
+
+---
 
 ### Scoring frameworks
 
@@ -80,7 +82,7 @@ Supporting these, there are:
   Additional workflow explanations, review examples, and design notes (to be expanded).
 
 - **Results (`/results`)**  
-  Placeholder directory for scored outputs and logs produced by evaluation runs.
+  Directory for scored outputs and logs produced by evaluation runs.
 
 ---
 
@@ -122,3 +124,4 @@ Scenarios live in:
 
 ```text
 data/scenarios/
+example: ai_infra_vs_productivity_rotation_event_path

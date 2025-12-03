@@ -33,6 +33,8 @@ The project is organized around four core components:
 - **Scoring tools (`/scoring`)**  
   Simple scripts and rubrics that turn model outputs into transparent scores and rationales.
 
+- **Additional eval configs (e.g., evals/crowded_shared_favorites_eval_config.yaml)** cover other portfolio situations such as crowded shared favorites drawdowns.
+
 ### Scoring frameworks
 
 Scoring is intentionally layered so you can start simple and add structure:

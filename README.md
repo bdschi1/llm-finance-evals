@@ -35,6 +35,20 @@ The project is organized around four core components:
 
 - **Additional eval configs (e.g., evals/crowded_shared_favorites_eval_config.yaml)** cover other portfolio situations such as crowded shared favorites drawdowns.
 
+- ### Current scenarios
+
+The initial version of this repo includes two fully specified long/short PM scenarios:
+
+- **AI infra vs productivity rotation**  
+  Path file: `data/scenarios/ai_infra_vs_productivity_rotation_event_path.md`  
+  Eval config: `evals/pm_eval_config.yaml`  
+  Focus: rotation between AI infrastructure beneficiaries and broader productivity winners, and how a PM sizes and rebalances risk through that event path.
+
+- **Crowded shared favorites drawdown**  
+  Path file: `data/scenarios/crowded_shared_favorites_drawdown_event_path.md`  
+  Eval config: `evals/crowded_shared_favorites_eval_config.yaml`  
+  Focus: crowding, de-risking, and how a PM manages a drawdown in widely held “quality favorites” — including position sizing, theme risk caps, and de-crowding behavior.
+
 ### Scoring frameworks
 
 Scoring is intentionally layered so you can start simple and add structure:

@@ -1,0 +1,27 @@
+# Eval config: Crowded Shared Favorites Drawdown
+
+name: crowded_shared_favorites_drawdown_long_short_v1
+description: >
+  Evaluate a long/short PM’s reasoning on a crowded shared favorites drawdown:
+  positioning, risk use, crowding awareness, and path to de-risk or rotate.
+
+scenario:
+  path: data/scenarios/crowded_shared_favorites_drawdown_event_path.md
+
+roles:
+  - name: long_pm
+    system_prompt: prompts/long_pm_system_prompt.md
+    golden_answer: golden_answers/crowded_shared_favorites_drawdown_event_path/long_pm_v1.md
+
+  - name: short_pm
+    system_prompt: prompts/short_pm_system_prompt.md
+    golden_answer: golden_answers/crowded_shared_favorites_drawdown_event_path/short_pm_v1.md
+
+scoring:
+  schema: scoring/schema.yaml
+  rubric: scoring/rubric_long_short.yaml
+
+output:
+  # These are illustrative; you can reuse or adapt as needed
+  scored_output_path: results/crowded_shared_favorites_scored_output.json
+  log_path: results/crowded_shared_favorites_log.txt

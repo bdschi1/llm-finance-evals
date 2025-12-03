@@ -1,9 +1,10 @@
-# Eval config: Crowded Shared Favorites Drawdown
+# Eval config: Crowded Shared Favorites Drawdown (Long/Short PM)
 
 name: crowded_shared_favorites_drawdown_long_short_v1
 description: >
-  Evaluate a long/short PM’s reasoning on a crowded shared favorites drawdown:
-  positioning, risk use, crowding awareness, and path to de-risk or rotate.
+  Evaluate a long/short PM’s reasoning on a crowded shared favorites
+  drawdown: positioning, risk use, crowding awareness, and the path
+  to de-risk or rotate.
 
 scenario:
   path: data/scenarios/crowded_shared_favorites_drawdown_event_path.md
@@ -22,6 +23,6 @@ scoring:
   rubric: scoring/rubric_long_short.yaml
 
 output:
-  # These are illustrative; you can reuse or adapt as needed
   scored_output_path: results/crowded_shared_favorites_scored_output.json
   log_path: results/crowded_shared_favorites_log.txt
+

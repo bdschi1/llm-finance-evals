@@ -98,8 +98,7 @@ This repo is aimed at:
 
 ## Author and context
 
-These evals are based on my experience as a **long/short healthcare portfolio manager and research lead**, building and running fundamental and factor-aware equity strategies across multi-manager and owner-operated funds.
-
+These evals are based on my experience as a **long/short healthcare portfolio manager and research lead**, building and running fundamental and factor-aware equity strategies across multi-manager and owner-operated funds. Global long/short hiring, training, and management multiple Analyst teams. Launched funds. Managed laege books through various market regimes. Turning domain expertise into structured portfolio workflows, code, datasets, risk metrics, and evaluation frameworks.
 The focus here is on tasks that actually show up in live workflows, including:
 
 - Pre- and post-earnings work  
@@ -109,7 +108,11 @@ The focus here is on tasks that actually show up in live workflows, including:
 
 The goal is to make it easy for AI/ML teams to plug in models, while PMs, research heads, and risk can see clearly how model behavior maps to decision quality and P&L.
 
----
+“Every trade is a decision to either increase or decrease risk exposure.” - David Shaw
+“Good investing requires a strange combination of patience and aggression.” - Joel Greenblatt 
+"The best way to predict the future is to invent it.” - Alan Kay
+"The defining skill of this era is knowing which part of your job should become training data.” - bdschi1
+"Once in a while you get shown the light in the strangest of places if you look at it right" - Robert Hunter
 
 ## How to Run an Evaluation
 

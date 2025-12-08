@@ -1,0 +1,102 @@
+{
+  "id": "ml_pipeline_and_backtest_sanity_check_v1",
+  "name": "ML Pipeline and Backtest Sanity Check (v1)",
+  "version": "1.0",
+  "task_type": "analysis_and_critique",
+  "description": "Evaluate whether a model can diagnose basic data, backtest, and ML-pipeline flaws in a proposed quant strategy, and propose concrete fixes.",
+
+  "intended_audience": [
+    "AI / ML teams in asset management",
+    "PMs and quants using GenAI as a copilot for strategy research",
+    "Domain expert AI evaluators"
+  ],
+
+  "inputs": {
+    "pipeline_description_markdown": "data/ml_pipeline_and_backtest_sanity_check_v1_example.md",
+    "optional_code_snippet": "data/ml_pipeline_and_backtest_sanity_check_v1_code_stub.py"
+  },
+
+  "expected_outputs": {
+    "format": "structured_markdown",
+    "sections": [
+      {
+        "id": "high_level_summary",
+        "title": "1. High-level Summary of the Proposed Strategy",
+        "description": "Briefly describe what the strategy is trying to do, in plain language: instruments, horizon, signals, and objective."
+      },
+      {
+        "id": "data_pipeline_review",
+        "title": "2. Data Pipeline Review",
+        "description": "Identify strengths and weaknesses in the data pipeline: data sources, identifiers, adjustments (splits/dividends), survivorship, look-ahead risk, missing data handling, and alignment of calendars."
+      },
+      {
+        "id": "feature_and_label_design",
+        "title": "3. Feature and Label Design",
+        "description": "Assess whether the features and labels are well defined for the prediction horizon, free of look-ahead, and appropriate for the data frequency and cross-section."
+      },
+      {
+        "id": "model_and_validation",
+        "title": "4. Model Choice and Validation",
+        "description": "Comment on the suitability of the model family, regularization, cross-validation or walk-forward scheme, and performance metrics. Flag any obvious overfitting or leakage risks."
+      },
+      {
+        "id": "backtest_design",
+        "title": "5. Backtest Design and Implementation",
+        "description": "Evaluate the backtest setup: rebalancing frequency, transaction cost handling, slippage, position sizing rules, and realistic constraints. Highlight where results may be biased or overly optimistic."
+      },
+      {
+        "id": "risk_and_capacity",
+        "title": "6. Risk, Capacity, and Robustness",
+        "description": "Discuss risk measures (volatility, drawdown, tail risk), capacity considerations, and regime robustness (e.g., performance in different volatility or macro environments)."
+      },
+      {
+        "id": "concrete_fixes_and_priorities",
+        "title": "7. Concrete Fixes and Priorities",
+        "description": "List specific fixes or redesign steps, ordered by impact, to make the pipeline more reliable. Include both quick wins and deeper structural changes."
+      }
+    ]
+  },
+
+  "scoring": {
+    "primary_rubric": "scoring/ml_pipeline_and_backtest_sanity_check_v1.md",
+    "dimensions": [
+      {
+        "id": "data_engineering_awareness",
+        "name": "Data Engineering Awareness",
+        "description": "Understands and checks for survivorship bias, look-ahead bias, corporate actions, identifier hygiene, and calendar alignment."
+      },
+      {
+        "id": "feature_label_reasoning",
+        "name": "Feature & Label Reasoning",
+        "description": "Evaluates whether features and labels are appropriate for the target, horizon, and data structure."
+      },
+      {
+        "id": "validation_and_overfitting_control",
+        "name": "Validation & Overfitting Control",
+        "description": "Assesses model validation, cross-validation or walk-forward, regularization, and the risk of overfitting."
+      },
+      {
+        "id": "backtest_realism",
+        "name": "Backtest Realism",
+        "description": "Checks rebalancing logic, costs, slippage, liquidity, and constraints to judge whether P&L is realistic."
+      },
+      {
+        "id": "risk_and_capacity_thinking",
+        "name": "Risk & Capacity Thinking",
+        "description": "Incorporates volatility, drawdown, regime behavior, and capacity into the critique."
+      },
+      {
+        "id": "actionability",
+        "name": "Actionability of Recommendations",
+        "description": "Provides specific, implementable fixes instead of vague comments."
+      }
+    ],
+    "overall_score_definition": "Weighted combination of dimension scores, emphasising data/feature hygiene, overfitting control, and backtest realism."
+  },
+
+  "notes_for_evaluators": [
+    "This eval is not a coding test. It is a reasoning and diagnostic test about data, backtest, and ML-pipeline design in a realistic quant/PM setting.",
+    "The model does not have to name specific libraries or hyperparameters. The focus is on conceptual correctness and ability to catch common traps.",
+    "Use the rubric to score individual dimensions 1–5, then compute an overall score and note key failure modes."
+  ]
+}

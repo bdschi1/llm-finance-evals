@@ -1,0 +1,70 @@
+id: thematic_etf_v1
+name: Thematic ETF expression and trade structuring
+description: >
+  Evaluate whether an LLM can map a fundamental theme into ETF expressions,
+  understanding exposure, basis risk, and trade structuring.
+
+task_type: generation
+
+inputs:
+  - id: theme_description
+    description: >
+      2–4 paragraphs describing an investment theme (e.g., GLP-1 impact on healthcare,
+      AI infrastructure buildout, onshoring, rate regime).
+  - id: etf_menu
+    description: >
+      Small table or list of candidate ETFs with tickers, rough sector/region exposures,
+      and key constraints (liquidity, fees, leverage).
+
+outputs:
+  - id: expression_plan
+    description: >
+      Proposed ETF basket or primary ETF expression(s) for the theme, with
+      explanation of why these instruments are appropriate.
+  - id: risk_and_basis_discussion
+    description: >
+      Discussion of the main risks and basis mismatches between the theme and the ETF(s),
+      and how a PM might manage/hedge them.
+
+rubric:
+  dimensions:
+    - id: theme_to_exposure_mapping
+      label: Theme-to-exposure mapping
+      weight: 0.30
+      description: >
+        Does the model correctly translate the theme into ETF exposures and avoid
+        obvious mismatches (e.g., wrong sector or region)?
+      scale: 1-5
+
+    - id: instrument_selection_logic
+      label: Instrument selection logic
+      weight: 0.25
+      description: >
+        Are the chosen ETFs justified on liquidity, purity of exposure, and practicality,
+        not just name-matching the theme?
+      scale: 1-5
+
+    - id: basis_and_hedging
+      label: Basis risk and hedging awareness
+      weight: 0.25
+      description: >
+        Does the answer identify key basis risks (e.g., benchmark differences,
+        unintended factor tilts) and suggest sensible hedges or adjustments?
+      scale: 1-5
+
+    - id: communication_quality
+      label: Communication quality (PM-facing)
+      weight: 0.20
+      description: >
+        Is the expression plan written in a way that a PM or investment committee
+        could quickly understand and challenge?
+      scale: 1-5
+
+scoring:
+  method: rubric
+  script: scoring/thematic_etf_rubric.py  # to be implemented later
+
+cases:
+  - id: theme_case_1
+    data_file: ../data/themes/theme_case_1_input.json
+    golden_answer_file: ../golden_answers/theme_case_1_answer.md

@@ -1,0 +1,67 @@
+id: equity_research_v1
+name: Equity research thesis quality
+description: >
+  Evaluate whether an LLM can produce a concise, investment-grade long/short thesis
+  for a single stock, given a short company profile and recent events.
+
+task_type: generation  # free-text generation
+
+inputs:
+  - id: company_profile
+    description: >
+      3–6 sentence business description including segment mix, geography, and rough scale.
+  - id: recent_events
+    description: >
+      Bulleted list of 3–5 recent events (earnings, guidance, product launches, regulatory items).
+
+outputs:
+  - id: thesis
+    description: >
+      3–6 sentence long/short thesis, including drivers, edge/variant perception,
+      and basic risk framing.
+
+rubric:
+  dimensions:
+    - id: business_understanding
+      label: Business understanding
+      weight: 0.30
+      description: >
+        Does the thesis show a correct grasp of what the company does,
+        its key segments, and revenue/profit drivers?
+      scale: 1-5
+
+    - id: thesis_clarity
+      label: Thesis clarity and structure
+      weight: 0.25
+      description: >
+        Is there a clear long or short stance, with a main idea and supporting arguments,
+        written in a way an investment committee could understand quickly?
+      scale: 1-5
+
+    - id: drivers_and_edge
+      label: Drivers and edge
+      weight: 0.25
+      description: >
+        Does the thesis identify specific upside/downside drivers and any variant perception
+        vs consensus (what the market might be missing)?
+      scale: 1-5
+
+    - id: risk_discussion
+      label: Risk discussion
+      weight: 0.20
+      description: >
+        Are key risks mentioned, and are they linked to the thesis (what could make this wrong)?
+      scale: 1-5
+
+scoring:
+  method: rubric
+  script: scoring/equity_research_rubric.py  # to be implemented later
+
+cases:
+  - id: er_case_1
+    data_file: ../data/equity/er_case_1_input.json
+    golden_answer_file: ../golden_answers/er_case_1_answer.md
+
+  - id: er_case_2
+    data_file: ../data/equity/er_case_2_input.json
+    golden_answer_file: ../golden_answers/er_case_2_answer.md

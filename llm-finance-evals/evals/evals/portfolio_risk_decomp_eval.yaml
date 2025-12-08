@@ -1,0 +1,74 @@
+id: portfolio_risk_decomp_v1
+name: Portfolio risk decomposition and risk narrative
+description: >
+  Evaluate whether an LLM can read a simple long/short portfolio snapshot and
+  produce a coherent risk decomposition and narrative: how much risk comes from
+  market, factors, and idiosyncratic components, and what that implies for PM actions.
+
+task_type: generation
+
+inputs:
+  - id: portfolio_snapshot
+    description: >
+      Small table with positions (long/short), weights, sector, and key factor
+      loadings (e.g., beta, size, value/growth, momentum, quality).
+  - id: benchmark_info
+    description: >
+      Summary of benchmark exposures or risk limits relevant to the portfolio.
+  - id: scenario_context
+    description: >
+      Short description of current market regime or scenario of interest
+      (e.g., growth scare, inflation shock, policy shift).
+
+outputs:
+  - id: risk_decomposition
+    description: >
+      A structured breakdown of total risk into market, factor, and idiosyncratic
+      components, plus commentary on which positions drive each bucket.
+  - id: risk_narrative_and_actions
+    description: >
+      3–6 paragraphs summarizing the portfolio’s risk profile in plain language and
+      suggesting 2–3 concrete risk-management actions (add, trim, hedge, rotate).
+
+rubric:
+  dimensions:
+    - id: structural_understanding
+      label: Structural risk understanding
+      weight: 0.30
+      description: >
+        Does the model correctly distinguish between market, factor, and
+        idiosyncratic risk and assign positions to these buckets sensibly?
+      scale: 1-5
+
+    - id: alignment_with_inputs
+      label: Alignment with provided factor data
+      weight: 0.25
+      description: >
+        Does the decomposition actually use the given factor loadings and benchmark
+        info, rather than generic “portfolio risk” language?
+      scale: 1-5
+
+    - id: narrative_quality
+      label: Risk narrative quality
+      weight: 0.25
+      description: >
+        Can a PM or risk committee quickly understand where risk is coming from,
+        in words, not just numbers?
+      scale: 1-5
+
+    - id: actionability
+      label: Actionability of recommendations
+      weight: 0.20
+      description: >
+        Are the suggested actions concrete, feasible, and aligned with the risk view
+        (e.g., trim names that dominate idiosyncratic risk, hedge factor tilts)?
+      scale: 1-5
+
+scoring:
+  method: rubric
+  script: scoring/portfolio_risk_decomp_rubric.py  # to be implemented later
+
+cases:
+  - id: portfolio_case_1
+    data_file: ../data/portfolio/portfolio_case_1_input.json
+    golden_answer_file: ../golden_answers/portfolio_case_1_answer.md

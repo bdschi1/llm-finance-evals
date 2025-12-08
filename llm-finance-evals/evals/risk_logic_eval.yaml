@@ -1,0 +1,72 @@
+id: risk_logic_v1
+name: Position risk and exposure reasoning
+description: >
+  Evaluate whether an LLM can identify and explain key risks and exposures for a single
+  long or short equity position, given a brief position summary and factor/context data.
+
+task_type: generation
+
+inputs:
+  - id: position_summary
+    description: >
+      2–4 sentences describing the position (ticker, long/short, size bucket),
+      basic thesis, and time horizon.
+  - id: factor_exposures
+    description: >
+      Simple table or bullet list of major style/sector/country factor exposures
+      relevant to the position.
+  - id: event_calendar
+    description: >
+      Bulleted list of upcoming catalysts (earnings, guidance, product events, trials, macro prints).
+
+outputs:
+  - id: risk_summary
+    description: >
+      3–6 paragraph risk summary covering fundamental, factor/style, liquidity,
+      and event risks, plus any concentration or correlation concerns.
+
+rubric:
+  dimensions:
+    - id: coverage_of_risks
+      label: Coverage of key risks
+      weight: 0.35
+      description: >
+        Does the summary identify the main fundamental and event risks a PM or risk manager
+        would worry about for this position?
+      scale: 1-5
+
+    - id: factor_and_exposure_logic
+      label: Factor and exposure logic
+      weight: 0.30
+      description: >
+        Does the answer correctly use the provided factor information
+        (e.g., growth/value, momentum, sector, country) and avoid obvious contradictions?
+      scale: 1-5
+
+    - id: severity_and_impact
+      label: Severity and impact reasoning
+      weight: 0.20
+      description: >
+        Does it distinguish between minor noise and risks that could materially
+        change the thesis or P&L?
+      scale: 1-5
+
+    - id: structure_and_clarity
+      label: Structure and clarity
+      weight: 0.15
+      description: >
+        Is the risk summary structured in a way that a PM/risk committee could skim and act on?
+      scale: 1-5
+
+scoring:
+  method: rubric
+  script: scoring/risk_logic_rubric.py  # to be implemented later
+
+cases:
+  - id: risk_case_1
+    data_file: ../data/risk/risk_case_1_input.json
+    golden_answer_file: ../golden_answers/risk_case_1_answer.md
+
+  - id: risk_case_2
+    data_file: ../data/risk/risk_case_2_input.json
+    golden_answer_file: ../golden_answers/risk_case_2_answer.md

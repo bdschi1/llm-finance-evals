@@ -1,0 +1,43 @@
+# Evaluation configuration for long/short PM reasoning tasks
+# This file defines how a scenario, prompt, golden answer, and scoring system fit together.
+
+evaluation_name: long_short_pm_eval
+
+description: |
+  End-to-end evaluation of LLM reasoning quality on long/short portfolio
+  management tasks. This config specifies how to run a model (as either a
+  Long PM or Short PM) on a scenario, and how to score its output against
+  a PM-grade golden answer using schema + rubric + scoring script.
+
+scenario:
+  id: ai_infra_vs_productivity_rotation_event_path
+  path: data/scenarios/ai_infra_vs_productivity_rotation_event_path.md
+
+roles:
+  long_pm:
+    system_prompt: prompts/long_pm_system_prompt.md
+    golden_answer: golden_answers/ai_infra_vs_productivity_rotation_event_path/long_pm_v1.md
+  short_pm:
+    system_prompt: prompts/short_pm_system_prompt.md
+    golden_answer: golden_answers/ai_infra_vs_productivity_rotation_event_path/short_pm_v1.md
+
+scoring:
+  schema: scoring/schema.yaml
+  rubric: scoring/rubric_long_short.yaml
+  script: scoring/score_output.py
+
+inputs:
+  model_output_file: example_model_output.txt
+  golden_answer_file: example_golden_answer.txt
+
+output:
+  scored_output_path: results/scored_output.json
+  log_path: results/log.txt
+
+metadata:
+  author: "Your Name"
+  version: "1.0"
+  notes: |
+    This config is intentionally simple and is meant to illustrate how
+    a full evaluation can be orchestrated across scenario → prompt →
+    model output → golden answer → scoring script.
